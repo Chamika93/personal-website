@@ -23,4 +23,4 @@ function Layout({children}: props) {
     )
 }
 
-export default Layout
+export default Layout;
