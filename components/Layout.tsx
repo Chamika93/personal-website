@@ -1,6 +1,5 @@
 import React, {ReactNode} from 'react';
 import Head from 'next/head';
-import Link from 'next/Link';
 import Header from './Header';
 
 type props = {
