@@ -1,8 +1,6 @@
 import type { ReactElement } from 'react'
 import Image from 'next/image';
 
-import { Layout } from '../components';
-
 export default function Page(){
   return (
     <div className="w-full max-w-2xl mx-auto">
@@ -17,7 +15,7 @@ export default function Page(){
         </div>
         <Image
           className='rounded-full'
-          src="/my-pic.jpeg"
+          src="/avatar.jpeg"
           alt="Picture of the author"
           width={250}
           height={250}
@@ -45,13 +43,5 @@ export default function Page(){
         </div>
       </div>
     </div>
-  )
-}
-
-Page.getLayout = function getLayout(page: ReactElement) {
-  return (
-    <Layout>
-      {page}
-    </Layout>
   )
 }

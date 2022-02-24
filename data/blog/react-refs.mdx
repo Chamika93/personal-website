@@ -1,0 +1,62 @@
+---
+title: 'What is ref in react'
+publishedAt: '2022-02-25'
+summary: 'Explanation on react refs'
+image: '/static/images/github-actions/banner.png'
+---
+
+<Image
+  alt={`What is ref in react`}
+  src={`/static/images/react-refs/banner.jpg`}
+  width={1200}
+  height={630}
+  priority
+/>
+
+References in react differs a little bit from your usual react stuff ( Hooks , rendering etc .. ) Because of that sometimes 
+it is a little bit hard to understand. I had a hard time trying to wrap my head around this concept. 
+
+#### Why is it different ? 
+
+In react we are not usually allowed to or able to directly access dom elements. React is a declarative javascript
+library to build complex user interfaces.  The important keyword here is declarative. In declarative programming we don't 
+directly access elements which is called [imperative programming](https://stackoverflow.com/a/33656983) instead we describe 
+the UI and programme re-renders according to our description.
+
+<Image
+  alt={`React ref model`}
+  src={`/static/images/react-refs/image1.jpg`}
+  width={1000}
+  height={548}
+/>
+
+But there are some times we need to access dom elements which we can’t avoid like Managing focus, text selection, 
+or media playback. In these cases we need a connection with a dom element to manipulate it the way we want. Then comes the 
+React refs to the rescue , it provides the ability to create a direct connection ( reference ) to the element we want to change.
+
+
+Lets try to understand this by comparing this with normal javascript code.
+
+In Vanilla javascript if we want to focus a button we can use the following code snippet.
+<code />
+
+
+But if we  want to do the same thing in react there is no proper way to do this without using refs.
+
+Solution : 
+<code />
+
+#### Accessing elements in Child Component
+
+
+What if we want to access a child element button from a parent component function, how we are going to do this ?
+
+<Image
+  alt={`React ref model`}
+  src={`/static/images/react-refs/image2.png`}
+  width={1000}
+  height={548}
+/>
+
+In class components this is fairly straightforward. We simply pass down the ref. But in functional components we can't do
+this so we have to wrap the functional component in a React.forwardRef to make it work.  
