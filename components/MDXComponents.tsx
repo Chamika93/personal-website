@@ -6,7 +6,7 @@ import ConsCard from './ConsCard';
 import Step from './Step';
 import ImageWithTheme from './ImageWithTheme';
 
-const CustomLink = (props:any) => {
+const CustomLink = (props: any) => {
   const href = props.href;
   const isInternalLink = href && (href.startsWith('/') || href.startsWith('#'));
 
@@ -21,7 +21,7 @@ const CustomLink = (props:any) => {
   return <a target="_blank" rel="noopener noreferrer" {...props} />;
 };
 
-function RoundedImage(props:any) {
+function RoundedImage(props :any) {
   return <Image alt={props.alt} className="rounded-lg" {...props} />;
 }
 

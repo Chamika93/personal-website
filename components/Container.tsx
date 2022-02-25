@@ -8,7 +8,7 @@ import cn from 'classnames';
 import Footer from './Footer';
 import MobileMenu from './MobileMenu';
 
-function NavItem({ href, text }) {
+function NavItem({ href, text }: any) {
   const router = useRouter();
   const isActive = router.asPath === href;
 
@@ -28,7 +28,7 @@ function NavItem({ href, text }) {
   );
 }
 
-export default function Container(props) {
+export default function Container(props : any) {
   const [mounted, setMounted] = useState(false);
   const { resolvedTheme, setTheme } = useTheme();
 

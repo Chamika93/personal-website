@@ -1,6 +1,7 @@
 import Link from 'next/link';
+import react from 'react';
 
-const ExternalLink = ({ href, children }) => (
+const ExternalLink = ({ href, children }: any) => (
   <a
     className="text-gray-500 hover:text-gray-600 transition"
     target="_blank"
