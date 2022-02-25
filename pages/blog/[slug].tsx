@@ -2,7 +2,6 @@ import { useMDXComponent } from 'next-contentlayer/hooks';
 import components from '../../components/MDXComponents';
 import BlogLayout from '../../layouts/blog';
 import { allBlogs } from '.contentlayer/data';
-import react from 'react';
 
 export default function Post({ post }: { post: any }) {
   const Component = useMDXComponent(post.body.code);
