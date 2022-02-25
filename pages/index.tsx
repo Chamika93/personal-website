@@ -22,13 +22,15 @@ export default function Page({
             <br />
             <p>Helping developers build a faster web. Teaching about web development, serverless, and React / Next.js.</p>
           </div>
-          <Image
-            className='rounded-full'
-            src="/avatar.jpeg"
-            alt="Picture of the author"
-            width={250}
-            height={250}
-          />
+          <div className="w-[80px] sm:w-[176px] relative mb-8 sm:mb-0 mr-auto">
+            <Image
+              alt="Chamika Adikari"
+              height={176}
+              width={176}
+              src="/avatar.jpeg"
+              className="rounded-full"
+            />
+          </div>
         </div>
         <div className='mt-16'>
           <h3 className='font-bold text-2xl md:text-4xl'>Blog Posts</h3>
