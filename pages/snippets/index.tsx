@@ -17,7 +17,7 @@ export default function Snippets({
           Code Snippets
         </h1>
         <p className="mb-4 text-gray-600 dark:text-gray-400">
-          These are a collection of code snippets I've used in the past and
+          These are a collection of code snippets I&apos;ve used in the past and
           saved. Some are Serverless Functions, which include set up
           instructions. Others are anything from random CSS snippets to Node.js
           scripts.
