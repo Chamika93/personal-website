@@ -23,15 +23,6 @@ export default function SnippetLayout({
               {snippet.description}
             </p>
           </div>
-          <div className="mt-2 sm:mt-0">
-            <Image
-              alt={snippet.title}
-              height={48}
-              width={48}
-              src={`/logos/${snippet.logo}`}
-              className="rounded-full"
-            />
-          </div>
         </div>
         <div className="prose dark:prose-dark w-full">{children}</div>
       </article>

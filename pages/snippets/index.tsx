@@ -28,7 +28,6 @@ export default function Snippets({
               key={snippet.slug}
               title={snippet.title}
               slug={snippet.slug}
-              logo={snippet.logo}
               description={snippet.description}
             />
           ))}
@@ -40,7 +39,7 @@ export default function Snippets({
 
 export function getStaticProps() {
   const snippets = allSnippets.map((snippet) =>
-    pick(snippet, ['slug', 'title', 'logo', 'description'])
+    pick(snippet, ['slug', 'title', 'description'])
   );
 
   return { props: { snippets } };
