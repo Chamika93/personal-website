@@ -1,0 +1,34 @@
+---
+title: 'How to build a chat app with react and firebase'
+publishedAt: '2022-02-25'
+summary: 'Building a realtime chat application using react and firebase firestore database'
+image: '/static/images/react-chat-app/banner.png'
+---
+
+<Image
+  alt={`What is ref in react`}
+  src={`/static/images/react-chat-app/banner.jpg`}
+  width={1200}
+  height={630}
+  priority
+/>
+
+
+Building a chat app is a really good way to practise the skills you learn in any programming language. I have never build a 
+chat using react so finally decided to give it a try.
+
+
+#### Getting started 
+
+I first came up with the feature that I want to integrate in to the application.
+
+- A user should be able to create a chat by putting their name
+- User should be able to send the chat url and let the others to join the chat
+- Others should be able to put their name and join the chat
+- User should not be logged out of the chat on a reload
+
+So looking at the required features list it is evident that there should be someway to store the user details ( state ) in the browser
+environment to keep the user in the chat. Initially I came up with a way to generate a user id and store it in the browser storage,
+but later I found out that firebase offers a feature called [anoynmous auth](https://firebase.google.com/docs/auth/web/anonymous-auth) which
+create and use temporary anonymous accounts to authenticate with Firebase. This is perfect for our application.
+ 
