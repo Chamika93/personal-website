@@ -18,7 +18,7 @@ Building a chat app is a really good way to practise the skills you learn in any
 chat using react so finally decided to give it a try.
 
 
-#### Getting started 
+### Getting started 
 
 I first came up with the feature that I want to integrate in to the application.
 
@@ -32,3 +32,35 @@ environment to keep the user in the chat. Initially I came up with a way to gene
 but later I found out that firebase offers a feature called [anoynmous auth](https://firebase.google.com/docs/auth/web/anonymous-auth) which
 create and use temporary anonymous accounts to authenticate with Firebase. This is perfect for our application.
  
+Then the most important part is to store the messages and keep the real time communication between users. Eventhough web socket is perfect for something
+like this I thought of trying firebase firstore database.  Cloud Firestore is a flexible, scalable no sql database. In cloud firestore data is stored as 
+documents and organised in to collections. Documents can contain complex nested objects in addition to subcollections.
+
+### Create the chat
+
+<Image
+  alt={`React ref model`}
+  src={`/static/images/react-chat-app/image-1.png`}
+  width={1000}
+  height={548}
+/>
+
+When user clicks on the create chat button code need to create a user and store the user name in the db and then create a new document in the
+chat collection for the chat room. After required data is stored in the database user should be directed to the chat.
+
+```js
+  const onClickHandler = async ( userName ) => {
+      let { user }  = await firebase.auth().signInAnonymously().catch(alert);
+
+      await db.collection("user").doc(user?.uid).set({
+        name: userName
+      })
+ 
+      var newChatRef = db.collection("chats").doc();
+
+      newChatRef.set({
+        admin: user?.uid,
+      })
+      navigate(`/chat/${newChatRef.id}`)
+    }
+```
