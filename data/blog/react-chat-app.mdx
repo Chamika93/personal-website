@@ -20,7 +20,7 @@ chat using react so finally decided to give it a try.
 
 ### Getting started 
 
-I first came up with the feature that I want to integrate in to the application.
+I first came up with a MVP by lisiting the features that I want to integrate in to the application.
 
 - A user should be able to create a chat by putting their name
 - User should be able to send the chat url and let the others to join the chat
@@ -48,6 +48,11 @@ documents and organised in to collections. Documents can contain complex nested 
 When user clicks on the create chat button code need to create a user and store the user name in the db and then create a new document in the
 chat collection for the chat room. After required data is stored in the database user should be directed to the chat.
 
+This is the onClickHandler attached to the create chat button. We have used firebase anonymous authentication to get a unique id for each user
+and then we create a document ( similar to a row in mysql ) in _user_ collection ( similar to a table in mysql ). We save the username which we get
+from the input field to the user document.  Then we create a document in the _chats_ collection this document uid will be used to generate a unique
+url for that chat room.
+
 ```js
   const onClickHandler = async ( userName ) => {
       let { user }  = await firebase.auth().signInAnonymously().catch(alert);
@@ -64,3 +69,50 @@ chat collection for the chat room. After required data is stored in the database
       navigate(`/chat/${newChatRef.id}`)
     }
 ```
+
+### Sending and recieving messages
+
+<Image
+  alt={`React ref model`}
+  src={`/static/images/react-chat-app/image-2.png`}
+  width={1000}
+  height={548}
+/>
+
+Since we are using firebase firestore which has realtime database capabilities we only need to write and listen to the chats collection to
+send and receive messages. 
+
+Lets look at how we can send messages.
+
+```js
+const messageRef = db.collection("chats").doc(id).collection("messages").doc();
+const onSendHandler = async (message) => {
+  await messageRef.set({
+    text: message,
+    user: user,
+    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+  })
+}
+```
+
+In firestore we can create subcollections inside documents. So for each new message we create a new document inside the
+_messages_ sub collection in that specific chat room document. We need to add a timestamp to each message to order them
+when we recieve messages.
+
+Folowing code block recieve the messages and oreder them in the write order.
+
+```js
+  const messagesRef = db.collection("chats").doc(id).collection("messages");
+  const query = messagesRef.orderBy('createdAt').limit(25);
+  const [messages] = useCollectionData(query, { idField: 'id' });
+```
+
+We used `useCollectionData` hook to listen to the chat messages sub collection. So each time we have a new message `messages`
+array is updated with all the messages.
+
+
+Full code for the chat app can be found in [here](https://github.com/Chamika93/quick-chat). and it is deployed to this [url](https://quick-chat-flax.vercel.app/)
+if you need to have a quick look.
+
+
+
