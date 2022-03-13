@@ -13,3 +13,96 @@ image: '/static/images/understanding-javascript-iterator/banner.jpg'
   priority
 />
 
+For-of and spread operator are 2 important features introduced by the ES6. Both these have one common behaviour , 
+that is looping through a iterable objects like array or a string without using an index. Which saves us from the mess 
+of maintaining the indexes.
+
+You can only use for-of and spread operator on iterable objects.
+
+And Iterables are objects that implement the Symbol.iterator method. This method handles the iteration process under the hood.
+Let's see this in action…….
+
+```javascript
+const testString = 'Hi';
+for (let val of testString) {
+ console.log(val);
+}
+// prints 
+// H
+// i
+```
+
+Since strings implement @@iterator method when we call for-of method it relies on in-built iterator method to provide values one by one.
+
+#### Iterator method
+
+Iterator method is an interface that needs to be implemented to generate a sequence of values. Every time Iterator gets called it 
+should either return the next value or it should send done property set to true notifying there is no next value.
+Let's look at the iterator method of an array.
+
+```javascript
+const arr = [1, 2, 3];
+const iterator = arr[Symbol.iterator]();
+console.log(iterator.next()); // { value: 1, done: false }
+console.log(iterator.next()); // { value: 2, done: false }
+console.log(iterator.next()); // { value: 3, done: false }
+console.log(iterator.next()); // { value: undefined, done: true }
+```
+
+We can modify the iterator to change the behaviour inside a for-of loop or a method that uses the in-built iterator.
+
+```javascript
+const someString = new String('Hi');
+someString[Symbol.iterator] = function () {
+ return {
+  next: function () {
+   this._index = this._index -1;
+   return {
+    value: someString[this._index],
+    done: (this._index === -1)
+   }
+  },
+ _index: someString.length
+ };
+};
+const iterator = someString[Symbol.iterator]();
+for (let i of someString) {
+ console.log(i);
+}
+// prints 
+// i
+// H
+```
+
+Since we modified the iterator now it prints the values in the reverse order.
+
+#### Iterable custom class
+
+If we implement Iterator method in any class we make it's instances iterable. When implementing the iterator function we can implement 
+the next function so the sequence is formed the way we want.Here is a custom class that implements @@iterator method it's instances 
+are going to be supported by any iteration function that uses @@iterator method under the hood. As an example here we have used a 
+for-of loop but it's also supports spread operator as well.
+
+```javascript
+class IterableClass {
+ constructor(data) {
+  this.data = data;
+ }
+ [Symbol.iterator]() {
+  let index = 0;
+  return {
+   next: () => {
+    if (index < this.data.length) {
+     return {value: this.data[index++], done: false}
+    } else {
+     return {done: true}
+    }
+   }
+  }
+ }
+}
+const obj = new IterableClass([1,2,3,4,5]);
+for (let i of obj) {
+ console.log(i);
+}
+```
