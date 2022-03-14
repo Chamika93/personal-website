@@ -13,7 +13,6 @@ export default function BlogLayout({
     <Container
       title={`${post.title} – Chamika Adikari`}
       description={post.summary}
-      image={`https://leerob.io${post.image}`}
       date={new Date(post.publishedAt).toISOString()}
       type="article"
     >

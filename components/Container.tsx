@@ -38,9 +38,8 @@ export default function Container(props : any) {
   const { children, ...customMeta } = props;
   const router = useRouter();
   const meta = {
-    title: 'Chamika Adikari – Developer, writer, creator.',
-    description: `Front-end developer, JavaScript enthusiast, and course creator.`,
-    image: 'https://leerob.io/static/images/banner.png',
+    title: 'Chamika Adikari – Developer',
+    description: `Front-end developer, JavaScript enthusiast.`,
     type: 'website',
     ...customMeta
   };
