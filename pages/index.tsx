@@ -18,9 +18,9 @@ export default function Page({
             <h1 className="text-5xl font-bold mb-1">
               Hi, Im Chamika
             </h1>
-            <p className='text-gray-700 mb-4'>Product Developer at And Digital</p>
+            <p className='text-gray-700 mb-4'>Associate Product Developer at And Digital</p>
             <br />
-            <p>Helping developers build a faster web. Teaching about web development, serverless, and React / Next.js.</p>
+            <p>Coding and learning React, Next JS and frontend stuff.</p>
           </div>
           <div className="w-[80px] sm:w-[176px] relative mb-8 sm:mb-0 mr-auto">
             <Image
