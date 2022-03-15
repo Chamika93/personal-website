@@ -20,7 +20,7 @@ export default function Page({
             </h1>
             <p className='text-gray-700 mb-4'>Associate Product Developer at And Digital</p>
             <br />
-            <p>Coding and learning React, Next JS and frontend stuff.</p>
+            <p>Coding React, Next JS and frontend stuff.</p>
           </div>
           <div className="w-[80px] sm:w-[176px] relative mb-8 sm:mb-0 mr-auto">
             <Image
